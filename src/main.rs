@@ -8,9 +8,9 @@ use crate::hyper::{Response, Server, Body};
 use crate::hyper::rt::{Future, run};
 use crate::hyper::service::service_fn_ok;
 use ::std::net::SocketAddr;
-use rust_channel_cache::Channels;
 use rand::rngs::ThreadRng;
 use rand::thread_rng;
+use rust_channel_cache::Channels;
 
 pub fn main() {
     let addr: SocketAddr = ([0u8, 0u8, 0u8, 0u8], 8082u16).into();

@@ -12,7 +12,6 @@ pub mod statics;
 use statics::{POSTGRESQL_URL,QUERY};
 use std::borrow::Cow;
 
-
 #[derive(Clone)]
 pub struct ChannelRow {
     pub id: i32,
