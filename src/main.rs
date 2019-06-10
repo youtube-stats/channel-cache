@@ -1,4 +1,3 @@
-extern crate chrono;
 extern crate hyper;
 extern crate postgres;
 extern crate quick_protobuf;

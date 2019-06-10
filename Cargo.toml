@@ -9,7 +9,6 @@ name = "cache"
 path = "src/main.rs"
 
 [dependencies]
-chrono = "0.4.6"
 hyper = "0.12.29"
 postgres = "0.15.2"
 quick-protobuf = "0.6.3"
