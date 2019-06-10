@@ -6,9 +6,9 @@ extern crate rand;
 use crate::hyper::{Response, Server, Body};
 use crate::hyper::rt::{Future, run};
 use crate::hyper::service::service_fn_ok;
+use crate::rand::rngs::ThreadRng;
+use crate::rand::thread_rng;
 use ::std::net::SocketAddr;
-use rand::rngs::ThreadRng;
-use rand::thread_rng;
 use rust_channel_cache::Channels;
 
 pub fn main() {
