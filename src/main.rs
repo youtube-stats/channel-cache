@@ -21,6 +21,8 @@ pub fn main() {
         let store: Channels = store.clone();
 
         service_fn_ok(move |_| {
+            println!("Got request - sending 50 channels");
+
             let mut rng: ThreadRng = thread_rng();
             let store: &Channels = &store;
             let store: Channels = store.clone();
