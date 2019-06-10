@@ -101,6 +101,8 @@ impl Channels {
             message.serials.push(value);
         }
 
+        println!("Sending channel message {:?}", message);
+
         let bytes: Vec<u8> = serialize_into_vec(&message)
             .expect("Could not serialize");
 
