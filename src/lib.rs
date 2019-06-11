@@ -66,24 +66,31 @@ impl Channels {
         }
     }
 
+    pub fn len(self: &Channels) -> usize {
+        self.rows.len()
+    }
+
     fn get(self: &Channels, i: usize) -> &ChannelRow {
         &self.rows[i]
     }
 
-    fn get_50(self: &Channels, rng: &ThreadRng) -> Channels {
+    fn get_50(self: &Channels, rng: &ThreadRng, length: usize) -> Channels {
         let mut rng: ThreadRng = rng.clone();
         let amount: usize = 50;
 
+        let collect: &[ChannelRow] = &self.rows[..length];
+        let collect: Vec<ChannelRow> = collect.to_vec();
+
         let rows: Vec<ChannelRow> =
-            self.rows.choose_multiple(&mut rng, amount).cloned().collect();
+            collect.choose_multiple(&mut rng, amount).cloned().collect();
 
         Channels {
             rows
         }
     }
 
-    pub fn get_msg(self: &Channels, rng: &ThreadRng) -> Vec<u8> {
-        let sampled: Channels = self.get_50(rng);
+    pub fn get_msg(self: &Channels, rng: &ThreadRng, length: usize) -> Vec<u8> {
+        let sampled: Channels = self.get_50(rng, length);
 
         let mut message: ChannelMessage = ChannelMessage::default();
 
