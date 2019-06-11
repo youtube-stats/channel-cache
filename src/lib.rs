@@ -25,6 +25,8 @@ pub struct Channels {
 
 impl Channels {
     pub fn init() -> Channels {
+        println!("Getting channels");
+
         let conn: Connection = {
             let params: &'static str = POSTGRESQL_URL;
             let tls: TlsMode = TlsMode::None;

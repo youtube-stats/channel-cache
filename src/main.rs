@@ -1,4 +1,6 @@
 extern crate hyper;
+#[macro_use]
+extern crate lazy_static;
 extern crate postgres;
 extern crate quick_protobuf;
 extern crate rand;
@@ -12,14 +14,15 @@ use ::std::net::SocketAddr;
 use rust_channel_cache::Channels;
 use hyper::Request;
 
-pub fn main() {
-    let addr: SocketAddr = ([0u8, 0u8, 0u8, 0u8], 8082u16).into();
+lazy_static! {
+    pub static ref store: Channels = Channels::init();
+}
 
-    let store: Channels = Channels::init();
+pub fn main() {
+    let addr: SocketAddr = ([0u8, 0u8, 0u8, 0u8], 8083u16).into();
 
     let new_service = move || {
-        let store: &Channels = &store;
-        let store: Channels = store.clone();
+        println!("Service called");
 
         service_fn_ok(move |req: Request<Body>| {
             println!("Got request - sending 50 channels");
@@ -39,8 +42,6 @@ pub fn main() {
             }
 
             let mut rng: ThreadRng = thread_rng();
-            let store: &Channels = &store;
-            let store: Channels = store.clone();
 
             let vec: &Vec<u8> = &store.get_msg(&mut rng, length);
             let body: Body = Body::from(vec.clone());
